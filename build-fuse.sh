@@ -4,7 +4,7 @@ required_packages="zlib1g bzip2 gcc-12-base build-essential cmake clang icu-devt
 apt-get update
 apt-get install -y ${required_packages}
 apt-get install -y cargo
-
+export PATH=${HOME}/.cargo/bin:${PATH}
 ## now we have cargo, release the cracken
 # install this lib to complete cargo install of cracken
 apt-get install -y librust-cargo+openssl-dev
@@ -22,5 +22,8 @@ cd build
 cmake .
 make
 make install
+
+cd ${HOME}
+git clone https://github.com/danielmiessler/SecLists.git
 
 ## done.
