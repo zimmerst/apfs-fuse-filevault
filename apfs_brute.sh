@@ -8,6 +8,9 @@ if [[ ! $3 ]]; then
     exit 0
 fi
 
+fuse_bin=$(which apfs-fuse)
+
+
 # wordlist variable
 password="${2:--}"
 
@@ -52,6 +55,6 @@ while read password; do
     # located in /root change the below line. this line will silently
     # execute apfs-fuse with a password from the wordlist. if the password
     # is found it will `kill` the parent process and stop the bruteforce attack
-    thread_max; /root/apfs-fuse/build/bin/apfs-fuse -r "$password" "$mount_partition" "$mount_dir" >/dev/null 2>&1 &&\
+    thread_max; $fuse_bin -r "$password" "$mount_partition" "$mount_dir" >/dev/null 2>&1 &&\
     echo -e "\n[+] Password is: "$password"\n" && kill "$killswitch" || continue &
 done < "$password"
