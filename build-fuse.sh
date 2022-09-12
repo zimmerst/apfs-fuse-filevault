@@ -12,18 +12,17 @@ cargo install cracken
 
 ## build instructions of apfs-fuse
 cd /tmp/
+rm -rfv /tmp/apfs-fuse
 git clone https://github.com/sgan81/apfs-fuse
-cd apfs-fuse
+cd /tmp/apfs-fuse
 git submodule init
 git submodule update
 
-mkdir -p build
-cd build
 cmake .
 make
 make install
 
 cd ${HOME}
-git clone https://github.com/danielmiessler/SecLists.git
+#git clone https://github.com/danielmiessler/SecLists.git
 
 ## done.
