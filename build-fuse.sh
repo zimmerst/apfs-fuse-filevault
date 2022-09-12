@@ -6,6 +6,8 @@ apt-get install -y ${required_packages}
 apt-get install -y cargo
 
 ## now we have cargo, release the cracken
+# install this lib to complete cargo install of cracken
+apt-get install -y librust-cargo+openssl-dev
 cargo install cracken
 
 ## build instructions of apfs-fuse
