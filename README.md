@@ -57,4 +57,21 @@ NOTE: dd is a low level copy command; use it with extreme caution. It's silent i
 4. get this repository: `git clone https://github.com/zimmerst/apfs-fuse-filevault.git`
 5. go to the folder `cd apfs-fuse-filevault` and make sure you are root `sudo su`
 6. once done, call `build-fuse.sh` and follow instructions
+7. use `fdisk -l` (as root) to identify your target device, in my case it was `/dev/sda`
+8. when everything is finished, use the `apfs_brute.sh` script to attempt accessing your filevault-encrypted disk
 
+## Goodies:
+The repo contains two additional folders: `utils` and `seclists`. 
+
+#### SecList
+The latter contains an excerpt from the [brilliant work by Daniel Miessler](https://github.com/danielmiessler/SecLists) which however was too big for the live image to be included. seclist contains a set of commonly used passwords that have been leaked through the past.
+
+#### Utils:
+Currently only one helper script: `gen_dates.sh` which can be used to generate a sequence of dates between a start date and an end date, use as below
+```
+./utils/gen_dates.sh "20220101" "20220131" > output.txt
+```
+which will generate the sequence and [pipe](https://www.geeksforgeeks.org/piping-in-unix-or-linux/) it to `output.txt`. The script generates sequences following the 'YYYY-MM-DD' format but contains a commented line that shows different formattings. Follow instructions in script to switch.
+
+#### Cracken: 
+See [here for a detailed account on what cracken does](https://github.com/shmuelamar/cracken) and why it's been included in this package. The `build_fuse.sh` will build the cracken tool to be used in conjunction. Should, against all odds, `cracken` not work in your terminal (remember being root), use this to re-source the package: `export PATH=${HOME}/.cargo/bin:${PATH}` 
